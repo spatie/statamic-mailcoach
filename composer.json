@@ -1,0 +1,23 @@
+{
+    "name": "spatie/statamic-mailcoach",
+    "type": "statamic-addon",
+    "autoload": {
+        "psr-4": {
+            "Spatie\\StatamicMailcoach\\": "src"
+        }
+    },
+    "require": {
+        "spatie/laravel-mailcoach": "^2.0"
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Mailcoach",
+            "description": "Display a Mailcoach summary inside Statamic"
+        },
+        "laravel": {
+            "providers": [
+                "Spatie\\StatamicMailcoach\\StatamicMailcoachServiceProvider"
+            ]
+        }
+    }
+}
