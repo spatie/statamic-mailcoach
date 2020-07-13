@@ -6,6 +6,8 @@
 
 This addon shows a summary of your Mailcoach campaigns, lists and templates inside the Statamic control panel.
 
+![Screenshot](./docs/screenshot.png)
+
 ## Support us
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us). 
