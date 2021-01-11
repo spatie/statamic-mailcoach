@@ -6,8 +6,8 @@
         <table class="data-table">
             <thead>
             <tr class="sortable-row outline-none">
-                <x-th sort-by="name" sort-default>Name</x-th>
-                <x-th sort-by="-updated_at" class="w-48 th-numeric">Last updated</x-th>
+                <x-mailcoach::th sort-by="name" sort-default>Name</x-mailcoach::th>
+                <x-mailcoach::th sort-by="-updated_at" class="w-48 th-numeric">Last updated</x-mailcoach::th>
                 <th class="w-12"></th>
             </tr>
             </thead>
@@ -27,13 +27,13 @@
                             </button>
                             <ul class="dropdown-list dropdown-list-left | hidden" data-dropdown-list>
                                 <li>
-                                    <x-form-button
+                                    <x-mailcoach::form-button
                                         :action="route('mailcoach.templates.delete', $template)"
                                         method="DELETE"
                                         data-confirm="true"
                                     >
-                                        <x-icon-label icon="fa-trash-alt" text="Delete" :caution="true" />
-                                    </x-form-button>
+                                        <x-mailcoach::icon-label icon="fa-trash-alt" text="Delete" :caution="true" />
+                                    </x-mailcoach::form-button>
                                 </li>
                             </ul>
                         </div>
