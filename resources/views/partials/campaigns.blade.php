@@ -6,12 +6,12 @@
         <table class="data-table">
             <thead>
             <tr class="sortable-row outline-none">
-                <x-th class="w-4"></x-th>
-                <x-th sort-by="name">Name</x-th>
-                <x-th sort-by="-sent_to_number_of_subscribers" class="w-32 th-numeric">Emails</x-th>
-                <x-th sort-by="-unique_open_count" class="w-40 th-numeric hidden | md:table-cell">Unique opens</x-th>
-                <x-th sort-by="-unique_click_count" class="w-40 th-numeric hidden | md:table-cell">Unique clicks</x-th>
-                <x-th sort-by="-sent" sort-default class="w-40 th-numeric hidden | md:table-cell">Sent</x-th>
+                <x-mailcoach::th class="w-4"></x-mailcoach::th>
+                <x-mailcoach::th sort-by="name">Name</x-mailcoach::th>
+                <x-mailcoach::th sort-by="-sent_to_number_of_subscribers" class="w-32 th-numeric">Emails</x-mailcoach::th>
+                <x-mailcoach::th sort-by="-unique_open_count" class="w-40 th-numeric hidden | md:table-cell">Unique opens</x-mailcoach::th>
+                <x-mailcoach::th sort-by="-unique_click_count" class="w-40 th-numeric hidden | md:table-cell">Unique clicks</x-mailcoach::th>
+                <x-mailcoach::th sort-by="-sent" sort-default class="w-40 th-numeric hidden | md:table-cell">Sent</x-mailcoach::th>
             </tr>
             </thead>
             <tbody>

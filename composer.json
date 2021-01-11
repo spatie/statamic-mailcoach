@@ -7,7 +7,7 @@
         }
     },
     "require": {
-        "spatie/laravel-mailcoach": "^2.0"
+        "spatie/laravel-mailcoach": "^3.0"
     },
     "extra": {
         "statamic": {
