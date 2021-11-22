@@ -79,12 +79,12 @@
     <div class="no-results border-dashed border-2">
         <div class="text-center max-w-md mx-auto mt-5 rounded-lg px-4 py-8">
             <h1 class="my-3">
-                Create your first Campaign now
+                Create your first campaign now
             </h1>
             <p class="text-grey mb-3">
                 Mailcoach campaigns are created and managed through the Mailcoach interface.
             </p>
-            <a href="{{ route('mailcoach.campaigns') }}" class="btn-primary btn-lg">Create Campaign</a>
+            <a href="{{ route('mailcoach.campaigns') }}" class="btn-primary btn-lg">Create campaign</a>
         </div>
     </div>
 @endif
