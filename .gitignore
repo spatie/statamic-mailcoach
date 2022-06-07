@@ -5,3 +5,4 @@ mix-manifest.json
 composer.lock
 .phpunit.result.cache
 .php_cs.cache
+.vscode

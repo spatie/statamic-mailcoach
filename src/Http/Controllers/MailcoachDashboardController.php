@@ -5,9 +5,9 @@ namespace Spatie\StatamicMailcoach\Http\Controllers;
 use Spatie\Mailcoach\Http\App\Queries\CampaignsQuery;
 use Spatie\Mailcoach\Http\App\Queries\EmailListQuery;
 use Spatie\Mailcoach\Http\App\Queries\TemplatesQuery;
-use Spatie\Mailcoach\Models\Campaign;
-use Spatie\Mailcoach\Models\EmailList;
-use Spatie\Mailcoach\Models\Template;
+use Spatie\Mailcoach\Domain\Campaign\Models\Campaign;
+use Spatie\Mailcoach\Domain\Audience\Models\EmailList;
+use Spatie\Mailcoach\Domain\Campaign\Models\Template;
 
 class MailcoachDashboardController
 {
