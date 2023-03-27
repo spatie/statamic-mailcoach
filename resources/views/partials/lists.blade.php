@@ -1,52 +1,39 @@
-<div class="flex items-center mb-2 mt-6">
+<?php /** @var \Spatie\MailcoachSdk\Support\PaginatedResults $lists */ ?>
+<div class="flex items-center mb-2 mt-2">
     <h2 class="flex-1">Lists</h2>
 </div>
-@if ($totalListsCount)
+@if ($lists->total())
     <div class="card p-0">
         <table class="data-table">
             <thead>
             <tr class="sortable-row outline-none">
-                <x-mailcoach::th sort-by="name" sort-default>Name</x-mailcoach::th>
-                <x-mailcoach::th sort-by="-active_subscribers_count" class="w-32 th-numeric">Active</x-mailcoach::th>
-                <x-mailcoach::th sort-by="-created_at" class="w-48 th-numeric hidden | md:table-cell">Created</x-mailcoach::th>
-                <th class="w-12"></th>
+                <th>Name</th>
+                <th class="text-right">Active</th>
+                <th class="w-48 text-right hidden | md:table-cell">Created</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($lists as $emailList)
+            <?php /** @var \Spatie\MailcoachSdk\Resources\EmailList $emailList */ ?>
+            @foreach($lists as $index => $emailList)
+                @continue($index > 20)
                 <tr>
-                    <td class="markup-links">
-                        <a class="break-words" href="{{ route('mailcoach.emailLists.subscribers', $emailList) }}">
+                    <td class="">
+                        <a target="_blank" class="break-words" href="{{ $baseUrl }}/email-lists/{{ $emailList->uuid }}/summary">
                             {{ $emailList->name }}
                         </a>
                     </td>
-                    <td class="td-numeric">{{ $emailList->active_subscribers_count }}</td>
-                    <td class="td-numeric hidden | md:table-cell">
-                        {{ $emailList->created_at->toMailcoachFormat() }}
-                    </td>
-                    <td class="td-action">
-                        <div class="dropdown" data-dropdown>
-                            <button class="icon-button" data-dropdown-trigger>
-                                <i class="fas fa-ellipsis-v | dropdown-trigger-rotate"></i>
-                            </button>
-                            <ul class="dropdown-list dropdown-list-left | hidden" data-dropdown-list>
-                                <li>
-                                    <x-mailcoach::form-button
-                                            :action="route('mailcoach.emailLists.delete', $emailList)"
-                                            method="DELETE"
-                                            data-confirm="true"
-                                    >
-                                        <x-mailcoach::icon-label icon="fa-trash-alt" text="Delete" :caution="true" />
-                                    </x-mailcoach::form-button>
-                                </li>
-                            </ul>
-                        </div>
+                    <td class="tabular-nums text-right">{{ number_format($emailList->activeSubscribersCount) }}</td>
+                    <td class="tabular-nums text-right hidden | md:table-cell">
+                        {{ \Illuminate\Support\Facades\Date::parse($emailList->createdAt)->format('Y-m-d H:i') }}
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
     </div>
+    @if ($lists->total() > 20)
+        <a href="{{ $baseUrl }}/email-lists" class="btn-link underline pl-0 mt-1">View all email lists</a>
+    @endif
 @else
     <div class="no-results border-dashed border-2">
         <div class="text-center max-w-md mx-auto mt-5 rounded-lg px-4 py-8">

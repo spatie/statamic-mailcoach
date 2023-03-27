@@ -1,0 +1,170 @@
+api_url:
+  display: 'Mailcoach URL'
+  type: text
+  read_only: false
+  instructions: Your Mailcoach instance's API url, this is `https://<your-domain>.mailcoach.app/api` when you're hosted on Mailcoach Cloud.
+api_token:
+  display: 'API Token'
+  type: text
+  input_type: password
+  read_only: false
+add_new_users:
+  display: Subscribe new users?
+  instructions: New accounts in your Statamic installation will be subscribed to the email list of your choice.
+  type: toggle
+  default: false
+users:
+  fields:
+    -
+      handle: email_list_uuid
+      field:
+        display: 'Email list'
+        type: mailcoach_list
+        mode: select
+        max_items: 1
+        width: 100
+    -
+      handle: disable_double_opt_in
+      field:
+        display: 'Disable double opt-in?'
+        type: toggle
+        width: 33
+        default: false
+    -
+      handle: check_consent
+      field:
+        display: 'Check consent?'
+        type: toggle
+        width: 33
+        default: false
+    -
+      handle: check_consent_field
+      field:
+        display: 'Consent field handle'
+        type: text
+        width: 33
+    -
+      handle: tags
+      field:
+        instructions: Add tags that should be added to the subscriber
+        type: taggable
+    -
+      handle: attributes
+      field:
+        instructions: Extra attributes that should be added to the subscriber
+        fields:
+          -
+            handle: value
+            field:
+              input_type: text
+              display: Field
+              type: user_fields
+              icon: text
+              listable: hidden
+          -
+            handle: key
+            field:
+              input_type: text
+              display: Key in Mailcoach
+              type: text
+              icon: text
+              listable: hidden
+        mode: table
+        reorderable: true
+        display: 'Attributes'
+        type: grid
+        icon: grid
+        add_row: 'Add attribute'
+        listable: hidden
+  display: User
+  type: grid
+  mode: stacked
+  max_rows: 1
+  min_rows: 1
+  reorderable: false
+  if:
+    add_new_users: 'equals true'
+forms:
+  fields:
+    -
+      handle: form
+      field:
+        display: Form
+        type: form
+        max_items: 1
+        mode: select
+        width: 33
+    -
+      handle: primary_email_field
+      field:
+        display: 'Email field handle'
+        type: text
+        max_items: 1
+        default: email
+        width: 33
+    -
+      handle: email_list_uuid
+      field:
+        display: 'Email list'
+        type: mailcoach_list
+        mode: select
+        max_items: 1
+        width: 33
+    -
+      handle: tags
+      field:
+        instructions: Add tags that should be added to the subscriber
+        type: taggable
+    -
+      handle: attributes
+      field:
+        instructions: Extra attributes that should be added to the subscriber
+        fields:
+          -
+            handle: key
+            field:
+              input_type: text
+              display: Key in Mailcoach
+              type: text
+              icon: text
+              listable: hidden
+          -
+            handle: value
+            field:
+              input_type: text
+              display: Value
+              instructions: You can use placeholders for the form fields, for example `{{ name }}`
+              type: text
+              icon: text
+              listable: hidden
+        mode: table
+        reorderable: true
+        display: 'Attributes'
+        type: grid
+        icon: grid
+        add_row: 'Add attribute'
+        listable: hidden
+    -
+      handle: disable_double_opt_in
+      field:
+        display: 'Disable double opt-in?'
+        type: toggle
+        width: 33
+        default: false
+    -
+      handle: check_consent
+      field:
+        display: 'Check consent?'
+        type: toggle
+        width: 33
+        default: false
+    -
+      handle: check_consent_field
+      field:
+        display: 'Consent field handle'
+        type: text
+        width: 33
+  display: Forms
+  type: grid
+  mode: stacked
+  add_row: 'Add Form'

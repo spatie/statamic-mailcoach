@@ -7,7 +7,7 @@
         }
     },
     "require": {
-        "spatie/laravel-mailcoach": "^3.0"
+        "spatie/laravel-mailcoach-sdk": "^1.0"
     },
     "extra": {
         "statamic": {
@@ -18,6 +18,11 @@
             "providers": [
                 "Spatie\\StatamicMailcoach\\StatamicMailcoachServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
         }
     }
 }

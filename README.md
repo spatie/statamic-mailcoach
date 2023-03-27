@@ -5,9 +5,9 @@
 
 # Mailcoach
 
-> Mailcoach for Statamic 3.
+> Mailcoach for Statamic.
 
-This addon shows a summary of your Mailcoach campaigns, lists and templates inside the Statamic control panel.
+This addon shows a summary of your Mailcoach campaigns, lists and templates inside the Statamic control panel and allows you to add subscribers from form submissions or new users.
 
 ![Screenshot](./docs/screenshot.png)
 
