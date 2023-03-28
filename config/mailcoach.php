@@ -53,39 +53,39 @@ return [
      * The form submissions to add to your Mailchimp Audiences
      */
     'forms' => [
-        [
-            /*
-            * handle of the form to listen for
-            */
-            'form' => null,
-
-            /*
-            * The email list uuid
-            */
-            'email_list_uuid' => null,
-
-            'disable_double_opt_in' => false,
-
-            'tags' => [],
-
-            'attributes' => [
-                [
-                    /*
-                    * The Mailcoach attribute key
-                    */
-                    'key'=> null,
-
-                    /*
-                    * the blueprint field name to use for the merge field
-                    */
-                    'field_name' => null,
-                ],
-            ],
-
-            /*
-            * Define the handle for the email field to be used. Defaults to 'email'.
-            */
-            'primary_email_field' => 'email',
-        ]
+        //[
+        //    /*
+        //    * handle of the form to listen for
+        //    */
+        //    'form' => null,
+        //
+        //    /*
+        //    * The email list uuid
+        //    */
+        //    'email_list_uuid' => null,
+        //
+        //    'disable_double_opt_in' => false,
+        //
+        //    'tags' => [],
+        //
+        //    'attributes' => [
+        //        [
+        //            /*
+        //            * The Mailcoach attribute key
+        //            */
+        //            'key'=> null,
+        //
+        //            /*
+        //            * the blueprint field name to use for the merge field
+        //            */
+        //            'field_name' => null,
+        //        ],
+        //    ],
+        //
+        //    /*
+        //    * Define the handle for the email field to be used. Defaults to 'email'.
+        //    */
+        //    'primary_email_field' => 'email',
+        //]
     ],
 ];

@@ -3,21 +3,20 @@
 namespace Spatie\StatamicMailcoach\Http\Controllers;
 
 use Illuminate\Support\Str;
-use Spatie\Mailcoach\Http\App\Queries\CampaignsQuery;
-use Spatie\Mailcoach\Http\App\Queries\EmailListQuery;
-use Spatie\Mailcoach\Http\App\Queries\TemplatesQuery;
-use Spatie\Mailcoach\Models\Campaign;
-use Spatie\Mailcoach\Models\EmailList;
-use Spatie\Mailcoach\Models\Template;
 use Spatie\MailcoachSdk\Facades\Mailcoach;
 
 class MailcoachDashboardController
 {
     public function __invoke()
     {
-        $campaigns = Mailcoach::campaigns();
+        if (config('statamic.mailcoach.api_token') && config('statamic.mailcoach.api_url')) {
+            $campaigns = Mailcoach::campaigns();
+            $lists = Mailcoach::emailLists();
+        } else {
+            session()->flash('error', __('You need to set a Mailcoach URL and API Token first.'));
 
-        $lists = Mailcoach::emailLists();
+            return redirect()->action([MailcoachSettingsController::class, 'show']);
+        }
 
         return view('statamic-mailcoach::dashboard', [
             'title' => 'Mailcoach',

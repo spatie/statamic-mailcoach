@@ -2,6 +2,7 @@
 
 namespace Spatie\StatamicMailcoach;
 
+use Illuminate\Support\Facades\Auth;
 use Spatie\StatamicMailcoach\Actions\SubscribeFromRegistrationAction;
 use Spatie\StatamicMailcoach\Actions\SubscribeFromSubmissionAction;
 use Spatie\StatamicMailcoach\Fieldtypes\MailcoachList;
@@ -9,6 +10,7 @@ use Spatie\StatamicMailcoach\Fieldtypes\UserFields;
 use Statamic\Events\SubmissionCreated;
 use Statamic\Events\UserRegistered;
 use Statamic\Facades\CP\Nav;
+use Statamic\Facades\Permission;
 use Statamic\Providers\AddonServiceProvider;
 
 class StatamicMailcoachServiceProvider extends AddonServiceProvider
@@ -40,11 +42,23 @@ class StatamicMailcoachServiceProvider extends AddonServiceProvider
     {
         parent::boot();
 
+        $this->bootMailcoachAPI();
+        $this->bootNav();
+        $this->bootPermissions();
+
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'statamic-mailcoach');
+    }
+
+    public function bootMailcoachAPI(): void
+    {
         if (config('statamic.mailcoach.api_token') && config('statamic.mailcoach.api_url')) {
             config()->set('mailcoach-sdk.api_token', config('statamic.mailcoach.api_token'));
             config()->set('mailcoach-sdk.endpoint', config('statamic.mailcoach.api_url'));
         }
+    }
 
+    public function bootNav(): void
+    {
         Nav::extend(function (\Statamic\CP\Navigation\Nav $nav) {
             $nav->content('Mailcoach')
                 ->route('statamic-mailcoach.index')
@@ -68,12 +82,29 @@ class StatamicMailcoachServiceProvider extends AddonServiceProvider
                         </defs>
                     </svg>')
                 ->active('mailcoach*')
-                ->children([
-                    'Dashboard' => cp_route('statamic-mailcoach.index'),
-                    'Settings' => cp_route('statamic-mailcoach.settings')
-                ]);
+                ->can('view mailcoach')
+                ->children(array_filter([
+                    'Dashboard' => config('statamic.mailcoach.api_token') && config('statamic.mailcoach.api_url')
+                        ? cp_route('statamic-mailcoach.index')
+                        : null,
+                    'Settings' => Auth::user()->can('mailcoach settings')
+                        ? cp_route('statamic-mailcoach.settings')
+                        : null,
+                ]));
         });
+    }
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'statamic-mailcoach');
+    protected function bootPermissions(): void
+    {
+        Permission::group('mailcoach', 'Mailcoach', function () {
+            Permission::register('view mailcoach', function ($permission) {
+                $permission
+                    ->label('View Mailcoach')
+                    ->children([
+                        Permission::make('mailcoach settings')
+                            ->label('Mailcoach Settings'),
+                    ]);
+            });
+        });
     }
 }

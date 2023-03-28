@@ -1,13 +1,16 @@
 api_url:
   display: 'Mailcoach URL'
   type: text
-  read_only: false
-  instructions: Your Mailcoach instance's API url, this is `https://<your-domain>.mailcoach.app/api` when you're hosted on Mailcoach Cloud.
+  read_only: true
+  instructions: Your Mailcoach instance's API url, for example<br> `https://<your-domain>.mailcoach.app/api`.
+  width: 50
 api_token:
   display: 'API Token'
   type: text
   input_type: password
-  read_only: false
+  read_only: true
+  instructions: The URL and API Token are managed through your environment using `MAILCOACH_API_URL` and `MAILCOACH_API_TOKEN`
+  width: 50
 add_new_users:
   display: Subscribe new users?
   instructions: New accounts in your Statamic installation will be subscribed to the email list of your choice.
