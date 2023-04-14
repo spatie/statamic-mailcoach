@@ -29,8 +29,7 @@
     },
     "config": {
         "allow-plugins": {
-            "pixelfear/composer-dist-plugin": true,
-            "pestphp/pest-plugin": true
+            "pixelfear/composer-dist-plugin": true
         }
     },
     "require-dev": {
