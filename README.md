@@ -9,7 +9,7 @@
 
 This addon shows a summary of your Mailcoach campaigns & lists inside the Statamic control panel and allows you to add subscribers from form submissions or new users.
 
-![Screenshot](./docs/screenshot.png)
+![Screenshot](./docs/statamic-mailcoach.png)
 
 ## Support us
 
