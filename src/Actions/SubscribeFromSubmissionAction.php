@@ -37,17 +37,21 @@ class SubscribeFromSubmissionAction
                 return [$attribute['key'] => $submission->get($handle) ?? $handle];
             })->toArray();
 
+        if (! isset($formConfig['email_list_uuid'])) {
+            return;
+        }
+
         try {
             Mailcoach::createSubscriber(
-                config('statamic.mailcoach.users.email_list_uuid'),
-                array_merge([
+                $formConfig['email_list_uuid'],
+                [
                     'extra_attributes' => Arr::except($attributes, ['first_name', 'last_name']),
                     'first_name' => $attributes['first_name'] ?? null,
                     'last_name' => $attributes['last_name'] ?? null,
                     'email' => $submission->get($emailField),
                     'tags' => $formConfig['tags'] ?? [],
                     'skip_confirmation' => $formConfig['disable_double_opt_in'] ?? false,
-                ]),
+                ],
             );
         } catch (InvalidData $e) {
             // Do nothing

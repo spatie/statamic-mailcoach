@@ -6,9 +6,15 @@
             "Spatie\\StatamicMailcoach\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\StatamicMailcoach\\Tests\\": "tests"
+        }
+    },
     "require": {
         "spatie/laravel-mailcoach-sdk": "^1.0",
-        "stillat/proteus": "^v1.0"
+        "stillat/proteus": "^v1.0",
+        "statamic/cms": "^3.4"
     },
     "extra": {
         "statamic": {
@@ -23,7 +29,11 @@
     },
     "config": {
         "allow-plugins": {
-            "pixelfear/composer-dist-plugin": true
+            "pixelfear/composer-dist-plugin": true,
+            "pestphp/pest-plugin": true
         }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.22"
     }
 }

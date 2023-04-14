@@ -10,9 +10,9 @@
                     <th class="w-4"></th>
                     <th>Name</th>
                     <th class="text-right">Emails</th>
-                    <th class="text-right hidden | md:table-cell">Unique opens</th>
-                    <th class="text-right hidden | md:table-cell">Unique clicks</th>
-                    <th class="text-right hidden | md:table-cell">Sent</th>
+                    <th class="text-right">Unique opens</th>
+                    <th class="text-right">Unique clicks</th>
+                    <th class="text-right">Sent</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +41,7 @@
                     <td class="tabular-nums text-right">
                         {{ $campaign->sentToNumberOfSubscribers ? number_format($campaign->sentToNumberOfSubscribers) : '-' }}
                     </td>
-                    <td class="tabular-nums text-right hidden | md:table-cell">
+                    <td class="tabular-nums text-right">
                         @if($campaign->openRate)
                             {{ number_format($campaign->uniqueOpenCount) }}
                             <div class="text-xs text-gray">{{ number_format($campaign->openRate / 100) }}%</div>
@@ -49,14 +49,14 @@
                             -
                         @endif
                     </td>
-                    <td class="tabular-nums text-right hidden | md:table-cell">
+                    <td class="tabular-nums text-right">
                         @if($campaign->clickRate)
                             {{ number_format($campaign->uniqueClickCount) }}
                             <div class="text-xs text-gray">{{ number_format($campaign->clickRate / 100) }}%</div>
                         @else
                             -
                     @endif
-                    <td class="tabular-nums text-right hidden | md:table-cell">
+                    <td class="tabular-nums text-right">
                         @if($campaign->status === 'sent')
                             <time datetime="{{ $campaign->sentAt }}">{{ \Illuminate\Support\Facades\Date::parse($campaign->sentAt)->diffForHumans() }}</time>
                         @elseif($campaign->status === 'sending')

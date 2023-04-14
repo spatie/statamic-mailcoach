@@ -22,23 +22,27 @@ class SubscribeFromRegistrationAction
             ->mapWithKeys(function (array $attribute) use ($user) {
                 $handle = $attribute['value'];
 
-                return [$attribute['key'] => $user->$handle];
+                return [$attribute['key'] => $user->$handle ?? $handle];
             })->toArray();
 
         if ((config('statamic.mailcoach.users.check_consent') ?? false) && ! request(config('statamic.mailcoach.users.check_consent_field'))) {
             return;
         }
 
+        if (! config('statamic.mailcoach.users.email_list_uuid')) {
+            return;
+        }
+
         Mailcoach::createSubscriber(
             config('statamic.mailcoach.users.email_list_uuid'),
-            array_merge($attributes, [
+            [
                 'extra_attributes' => Arr::except($attributes, ['first_name', 'last_name']),
                 'first_name' => $attributes['first_name'] ?? null,
                 'last_name' => $attributes['last_name'] ?? null,
                 'email' => $user->$emailField,
                 'tags' => config('statamic.mailcoach.users.tags', []),
                 'skip_confirmation' => config('statamic.mailcoach.users.disable_double_opt_in'),
-            ]),
+            ],
         );
     }
 }

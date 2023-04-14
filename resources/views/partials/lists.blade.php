@@ -1,5 +1,5 @@
 <?php /** @var \Spatie\MailcoachSdk\Support\PaginatedResults $lists */ ?>
-<div class="flex items-center mb-2 mt-2">
+<div class="flex items-center mb-2 mt-6">
     <h2 class="flex-1">Lists</h2>
 </div>
 @if ($lists->total())

@@ -30,17 +30,17 @@ return [
         * Extra attributes
          */
         'attributes' => [
-            [
-                /*
-                * The attribute key
-                */
-                'key'=> null,
+            // [
+            //     /*
+            //     * The attribute key
+            //     */
+            //     'key'=> null,
 
-                /*
-                * the blueprint field name to use for the merge field
-                */
-                'field_name' => null,
-            ],
+            //     /*
+            //     * the blueprint field name or value to use for the merge field
+            //     */
+            //     'value' => null,
+            // ],
         ],
 
         /*
