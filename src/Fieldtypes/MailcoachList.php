@@ -4,6 +4,7 @@ namespace Spatie\StatamicMailcoach\Fieldtypes;
 
 use Illuminate\Support\Collection;
 use Spatie\MailcoachSdk\Exceptions\ResourceNotFound;
+use Spatie\MailcoachSdk\Exceptions\Unauthorized;
 use Spatie\MailcoachSdk\Facades\Mailcoach;
 use Spatie\MailcoachSdk\Resources\EmailList;
 use Statamic\Fieldtypes\Relationship;
@@ -34,7 +35,7 @@ class MailcoachList extends Relationship
             if (! $list = Mailcoach::emailList($id)) {
                 return [];
             }
-        } catch (ResourceNotFound) {
+        } catch (ResourceNotFound|Unauthorized) {
             return [];
         }
 
