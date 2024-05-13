@@ -14,7 +14,7 @@
     "require": {
         "spatie/laravel-mailcoach-sdk": "^1.0",
         "stillat/proteus": "^v1.0|^v2.1",
-        "statamic/cms": "^3.4|^4.0"
+        "statamic/cms": "^3.4|^4.0|^5.0"
     },
     "extra": {
         "statamic": {
