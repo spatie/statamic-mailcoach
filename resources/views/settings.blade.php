@@ -3,11 +3,11 @@
 @section('title', __('Mailcoach Settings'))
 
 @section('content')
-    <publish-form
-            title='Configuration'
-            action={{ $route }}
-        :blueprint='@json($blueprint)'
-            :meta='@json($meta)'
-            :values='@json($values)'
-    ></publish-form>
+    <ui-publish-form
+        title="Configuration"
+        :blueprint="{{ Js::from($blueprint) }}"
+        :initial-values="{{ Js::from($values) }}"
+        :initial-meta="{{ Js::from($meta) }}"
+        :submit-url="'{{ $route }}'"
+    ></ui-publish-form>
 @stop
