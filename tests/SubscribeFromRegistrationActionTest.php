@@ -27,8 +27,7 @@ class SubscribeFromRegistrationActionTest extends TestCase
         $this->user = $user;
     }
 
-    /** @test * */
-    public function it_calls_the_mailcoach_api(): void
+    public function test_it_calls_the_mailcoach_api(): void
     {
         Mailcoach::spy()->shouldReceive('createSubscriber')->with('some-uuid', [
             'extra_attributes' => [],
@@ -42,8 +41,7 @@ class SubscribeFromRegistrationActionTest extends TestCase
         app(SubscribeFromRegistrationAction::class)->handle(new UserRegistered($this->user));
     }
 
-    /** @test * */
-    public function it_does_nothing_when_add_new_users_is_false(): void
+    public function test_it_does_nothing_when_add_new_users_is_false(): void
     {
         config()->set('statamic.mailcoach.add_new_users', false);
 
@@ -52,8 +50,7 @@ class SubscribeFromRegistrationActionTest extends TestCase
         app(SubscribeFromRegistrationAction::class)->handle(new UserRegistered($this->user));
     }
 
-    /** @test * */
-    public function it_checks_consent(): void
+    public function test_it_checks_consent(): void
     {
         Mailcoach::spy()->shouldReceive('createSubscriber')->once();
 
@@ -68,8 +65,7 @@ class SubscribeFromRegistrationActionTest extends TestCase
         app(SubscribeFromRegistrationAction::class)->handle(new UserRegistered($this->user));
     }
 
-    /** @test * */
-    public function it_checks_consent_and_does_nothing_if_not_given(): void
+    public function test_it_checks_consent_and_does_nothing_if_not_given(): void
     {
         Mailcoach::spy()->shouldNotReceive('createSubscriber');
 
@@ -84,8 +80,7 @@ class SubscribeFromRegistrationActionTest extends TestCase
         app(SubscribeFromRegistrationAction::class)->handle(new UserRegistered($this->user));
     }
 
-    /** @test * */
-    public function it_can_take_attributes_from_the_user_field(): void
+    public function test_it_can_take_attributes_from_the_user_field(): void
     {
         $this->user->set('attribute', 'bar');
 
@@ -107,8 +102,7 @@ class SubscribeFromRegistrationActionTest extends TestCase
         app(SubscribeFromRegistrationAction::class)->handle(new UserRegistered($this->user));
     }
 
-    /** @test * */
-    public function it_adds_tags(): void
+    public function test_it_adds_tags(): void
     {
         config()->set('statamic.mailcoach.users.tags', ['one', 'two']);
 
@@ -124,8 +118,7 @@ class SubscribeFromRegistrationActionTest extends TestCase
         app(SubscribeFromRegistrationAction::class)->handle(new UserRegistered($this->user));
     }
 
-    /** @test * */
-    public function it_can_skip_confirmation(): void
+    public function test_it_can_skip_confirmation(): void
     {
         config()->set('statamic.mailcoach.users.disable_double_opt_in', true);
 
