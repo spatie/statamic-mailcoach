@@ -39,8 +39,7 @@ class SubscribeFromSubmissionActionTest extends TestCase
         $this->submission = $submission;
     }
 
-    /** @test * */
-    public function it_calls_the_mailcoach_api(): void
+    public function test_it_calls_the_mailcoach_api(): void
     {
         Mailcoach::spy()->shouldReceive('createSubscriber')->with('some-uuid', [
             'extra_attributes' => [],
@@ -54,8 +53,7 @@ class SubscribeFromSubmissionActionTest extends TestCase
         app(SubscribeFromSubmissionAction::class)->handle(new SubmissionCreated($this->submission));
     }
 
-    /** @test * */
-    public function it_checks_consent(): void
+    public function test_it_checks_consent(): void
     {
         Mailcoach::spy()->shouldReceive('createSubscriber')->once();
 
@@ -67,8 +65,7 @@ class SubscribeFromSubmissionActionTest extends TestCase
         app(SubscribeFromSubmissionAction::class)->handle(new SubmissionCreated($this->submission));
     }
 
-    /** @test * */
-    public function it_checks_consent_and_does_nothing_if_not_given(): void
+    public function test_it_checks_consent_and_does_nothing_if_not_given(): void
     {
         Mailcoach::spy()->shouldNotReceive('createSubscriber');
 
@@ -80,8 +77,7 @@ class SubscribeFromSubmissionActionTest extends TestCase
         app(SubscribeFromSubmissionAction::class)->handle(new SubmissionCreated($this->submission));
     }
 
-    /** @test * */
-    public function it_can_take_attributes_from_the_submission(): void
+    public function test_it_can_take_attributes_from_the_submission(): void
     {
         $this->submission->set('attribute', 'bar');
 
@@ -103,8 +99,7 @@ class SubscribeFromSubmissionActionTest extends TestCase
         app(SubscribeFromSubmissionAction::class)->handle(new SubmissionCreated($this->submission));
     }
 
-    /** @test * */
-    public function it_adds_tags(): void
+    public function test_it_adds_tags(): void
     {
         config()->set('statamic.mailcoach.forms.0.tags', ['one', 'two']);
 
@@ -120,8 +115,7 @@ class SubscribeFromSubmissionActionTest extends TestCase
         app(SubscribeFromSubmissionAction::class)->handle(new SubmissionCreated($this->submission));
     }
 
-    /** @test * */
-    public function it_can_skip_confirmation(): void
+    public function test_it_can_skip_confirmation(): void
     {
         config()->set('statamic.mailcoach.forms.0.disable_double_opt_in', true);
 
