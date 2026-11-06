@@ -17,10 +17,10 @@ class MailcoachList extends Relationship
 
         $all = collect();
         do {
-            foreach($emailLists as $emailList) {
+            foreach ($emailLists as $emailList) {
                 $all->push($emailList);
             }
-        } while($emailLists = $emailLists->next());
+        } while ($emailLists = $emailLists->next());
 
         return $all->map(fn (EmailList $emailList) => ['id' => $emailList->uuid, 'title' => $emailList->name]);
     }
